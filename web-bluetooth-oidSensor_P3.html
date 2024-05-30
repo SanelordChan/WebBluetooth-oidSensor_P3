@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        hr.solid{
+            border-top: 3px solid #bbb;
+        }
+        p.small {
+            line-height: 1;
+        }
+    </style>
+
+    <head>
+        <title>NSF Phase III Demo</title>
+    </head>
+
+    <body id="body" style="background-color:#FFD0D0">
+        <h3>NSF Phase III Demo &emsp; &emsp;6-digits board code :  <input type="text" id="BoardCode" maxlength="6" size="6" input style="font-size:16px;" style="width: 200px;" value="547890">
+            <button onclick="connect()">Connect</button>
+            <button onclick="disconnect()">Disconnect</button>
+        </h3>
+
+        <hr class="solid">
+        <p class="small">ID1(MP) - Command: 
+            <select id="cmd_p1" size="1">
+                    <option value="2">Ready</option>
+                    <option value="4">LED set</option>
+                    <option value="5">Sound set</option>
+                    <option value="6">Info get</option>
+                    <option value="1">Initial</option>
+                    <option value="3">Sleep</option>
+            </select> &ensp; LED mode:
+            <select id="pattern_p1" size="1">
+                    <option value="1">Static on</option>
+                    <option value="2">Slow blinking</option>
+                    <option value="3">Fast blinking</option>
+                    <option value="4">Slow breathing</option>
+                    <option value="5">Fast breathing</option>
+                    <option value="6">Slow rainbow</option>
+                    <option value="7">Fast rainbow</option>
+            </select> &ensp; LED color: 
+            <input id="colorPicker_p1" type="color" value="#00ffff" size="3"> &#20; </input>
+            <label id="colorVal_p1"> #00ffff </label>
+        </p>
+        <p class="small">ID1(MP) - Interrupts mode:
+            <input type="checkbox" id="sndMode_p1" name="sndMode_p1" checked>
+            <td>  &ensp; Play index: <input type="number" class="inputNum" id="sndIdx_p1" name="sndIdx_p1" min="1" max="23785" value="8"></td>
+            <td>  &ensp; Volume: <input type="range" class="inputNum" id="sndVol_p1" min="0" max="128" value="128"> &#20; </td>
+            <label id="sndVolSet_p1"> 128 </label>
+        </p>
+        <p class="small">ID1(MP) - Battery level:
+            <label id="batt_p1" style="color:blue;font-family:'Courier New',Courier,monospace"> &ensp; ---</label>
+            <td>  &ensp; NSP status: </td>
+            <label id="nspRpt_p1" style="color:blue;font-family:'Courier New',Courier,monospace"> &ensp; ---</label>
+        </p>
+        <p class="small">ID1(MP) - Puck status:
+            <label id="puckRpt_p1" style="color:blue;font-family:'Courier New',Courier,monospace"> &ensp; ---</label>
+            <td>  &ensp; OID status: </td>
+            <label id="oidRpt_p1" style="color:blue;font-family:'Courier New',Courier,monospace"> &ensp; ---</label>
+        </p>
+
+        <hr class="solid">
+        <p class="small">ID2(PP) - Command: 
+            <select id="cmd_p2" size="1">
+                    <option value="2">Ready</option>
+                    <option value="4">LED set</option>
+                    <option value="5">Sound set</option>
+                    <option value="6">Info get</option>
+                    <option value="1">Initial</option>
+                    <option value="3">Sleep</option>
+    </select> &ensp; LED mode: 
+            <select id="pattern_p2" size="1">
+                    <option value="1">Static on</option>
+                    <option value="2">Slow blinking</option>
+                    <option value="3">Fast blinking</option>
+                    <option value="4">Slow breathing</option>
+                    <option value="5">Fast breathing</option>
+                    <option value="6">Slow rainbow</option>
+                    <option value="7">Fast rainbow</option>
+        </select> &ensp; LED color: 
+            <input id="colorPicker_p2" type="color" value="#ff00ff"> &#20; </input>
+            <label id="colorVal_p2"> &ensp; #ff0000 </label>
+        </p>
+        <p class="small">ID2(PP) - Interrupts mode:
+            <input type="checkbox" id="sndMode_p2" name="sndMode_p2" checked>
+            <td>  &ensp; Play index: <input type="number" class="inputNum" id="sndIdx_p2" name="sndIdx_p2" min="1" max="23785" value="8"></td>
+            <td>  &ensp; Volume: <input type="range" class="inputNum" id="sndVol_p2" min="0" max="128" value="128"> &#20; </td>
+            <label id="sndVolSet_p2"> 128 </label>
+        </p>
+        <p class="small">ID2(PP) - Battery level:
+            <label id="batt_p2" style="color:blue;font-family:'Courier New',Courier,monospace"> &ensp; ---</label>
+            <td>  &ensp; NSP status: </td>
+            <label id="nspRpt_p2" style="color:blue;font-family:'Courier New',Courier,monospace"> &ensp; ---</label>
+        </p>
+        <p class="small">ID2(PP) - Puck status:
+            <label id="puckRpt_p2" style="color:blue;font-family:'Courier New',Courier,monospace"> &ensp; ---</label>
+            <td>  &ensp; OID status: </td>
+            <label id="oidRpt_p2" style="color:blue;font-family:'Courier New',Courier,monospace"> &ensp; ---</label>
+        </p>
+
+        <hr class="solid">
+        <p class="small"></p>ID3(PP) - Command: 
+            <select id="cmd_p3" size="1">
+                    <option value="2">Ready</option>
+                    <option value="4">LED set</option>
+                    <option value="5">Sound set</option>
+                    <option value="6">Info get</option>
+                    <option value="1">Initial</option>
+                    <option value="3">Sleep</option>
+        </select> &ensp; LED mode: 
+            <select id="pattern_p3" size="1">
+                    <option value="1">Static on</option>
+                    <option value="2">Slow blinking</option>
+                    <option value="3">Fast blinking</option>
+                    <option value="4">Slow breathing</option>
+                    <option value="5">Fast breathing</option>
+                    <option value="6">Slow rainbow</option>
+                    <option value="7">Fast rainbow</option>
+        </select> &ensp; LED color: 
+            <input id="colorPicker_p3" type="color" value="#00ffff"> &#20; </input>
+            <label id="colorVal_p3">  #ff0000 </label>
+        </p>
+        <p class="small">ID3(PP) - Interrupts mode:
+            <input type="checkbox" id="sndMode_p3" name="sndMode_p3" checked>
+            <td>  &ensp; Play index: <input type="number" class="inputNum" id="sndIdx_p3" name="sndIdx_p3" min="1" max="23785" value="8"></td>
+            <td>  &ensp; Volume: <input type="range" class="inputNum" id="sndVol_p3" min="0" max="128" value="128"> &#20; </td>
+            <label id="sndVolSet_p3"> 128 </label>
+        </p>
+        <p class="small">ID3(PP) - Battery level:
+            <label id="batt_p3" style="color:blue;font-family:'Courier New',Courier,monospace"> &ensp; ---</label>
+            <td>  &ensp; NSP status: </td>
+            <label id="nspRpt_p3" style="color:blue;font-family:'Courier New',Courier,monospace"> &ensp; ---</label>
+        </p>
+        <p class="small">ID3(PP) - Puck status:
+            <label id="puckRpt_p3" style="color:blue;font-family:'Courier New',Courier,monospace"> &ensp; ---</label>
+            <td>  &ensp; OID status: </td>
+            <label id="oidRpt_p3" style="color:blue;font-family:'Courier New',Courier,monospace"> &ensp; ---</label>
+        </p>
+
+        <hr class="solid">
+        <p class="small"></p>ID4(PP) - Command:
+            <select id="cmd_p4" size="1">
+                    <option value="2">Ready</option>
+                    <option value="4">LED set</option>
+                    <option value="5">Sound set</option>
+                    <option value="6">Info get</option>
+                    <option value="1">Initial</option>
+                    <option value="3">Sleep</option>
+        </select> &ensp; LED mode: 
+            <select id="pattern_p4" size="1">
+                    <option value="1">Static on</option>
+                    <option value="2">Slow blinking</option>
+                    <option value="3">Fast blinking</option>
+                    <option value="4">Slow breathing</option>
+                    <option value="5">Fast breathing</option>
+                    <option value="6">Slow rainbow</option>
+                    <option value="7">Fast rainbow</option>
+        </select> &ensp; LED color: 
+            <input id="colorPicker_p4" type="color" value="#ff00ff"> &#20; </input>
+            <label id="colorVal_p4">  #ff0000 </label>
+        </p>
+        <p class="small">ID4(PP) - Interrupts mode:
+            <input type="checkbox" id="sndMode_p4" name="sndMode_p4" checked>
+            <td>  &ensp; Play index: <input type="number" class="inputNum" id="sndIdx_p4" name="sndIdx_p4" min="1" max="23785" value="8"></td>
+            <td>  &ensp; Volume: <input type="range" class="inputNum" id="sndVol_p4" min="0" max="128" value="128"> &#20; </td>
+            <label id="sndVolSet_p4"> 128 </label>
+        </p>
+        <p class="small">ID4(PP) - Battery level:
+            <label id="batt_p4" style="color:blue;font-family:'Courier New',Courier,monospace"> &ensp; ---</label>
+            <td>  &ensp; NSP status: </td>
+            <label id="nspRpt_p4" style="color:blue;font-family:'Courier New',Courier,monospace"> &ensp; ---</label>
+        </p>
+        <p class="small">ID4(PP) - Puck status:
+            <label id="puckRpt_p4" style="color:blue;font-family:'Courier New',Courier,monospace"> &ensp; ---</label>
+            <td>  &ensp; OID status: </td>
+            <label id="oidRpt_p4" style="color:blue;font-family:'Courier New',Courier,monospace"> &ensp; ---</label>
+        </p>
+
+        <hr class="solid">
+        <button onclick="writeCmd()">Write</button>
+        <p id="oidCommand">-</p>
+        <h3>Rx data from MP Puck <button onclick="clearTx()">Clear</button></h3>
+        <p id="rx_log" style="font-family:'Courier New',Courier,monospace"></p>
+        <h3>Log <button onclick="clearLog()">Clear</button></h3>
+        <p id="log" style="font-family:'Courier New',Courier,monospace"></p>
+    </body>
+    <script src="web-bluetooth-oidSensor_P3.js"></script>
+</html>
